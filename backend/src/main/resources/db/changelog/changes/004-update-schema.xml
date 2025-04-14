@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="004" author="enefit">
+        <!-- Update customers table -->
+        <renameColumn tableName="customers" oldColumnName="id" newColumnName="customer_id"/>
+        <addColumn tableName="customers">
+            <column name="first_name" type="varchar(255)"/>
+            <column name="last_name" type="varchar(255)"/>
+        </addColumn>
+
+        <!-- Update metering_points table -->
+        <addColumn tableName="metering_points">
+            <column name="address" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <renameColumn tableName="metering_points" oldColumnName="id" newColumnName="metering_point_id"/>
+
+        <!-- Update consumption table -->
+        <renameColumn tableName="consumption" oldColumnName="id" newColumnName="consumption_id"/>
+        <renameColumn tableName="consumption" oldColumnName="kwh" newColumnName="amount"/>
+        <addColumn tableName="consumption">
+            <column name="amount_unit" type="varchar(10)" defaultValue="kWh">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <modifyDataType tableName="consumption" columnName="amount" newDataType="numeric"/>
+    </changeSet>
+</databaseChangeLog> 

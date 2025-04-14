@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="002" author="enefit">
+        <!-- Insert sample customer -->
+        <insert tableName="customers">
+            <column name="first_name">John</column>
+            <column name="last_name">Doe</column>
+            <column name="username">john.doe</column>
+            <!-- Password: password123 -->
+            <column name="password">$2a$10$8GxHv3CZEGg.mX9YbDc0yOsP6jGdBj9.vdR3/dhYoKmrQJRN7PX1O</column>
+            <column name="role">USER</column>
+        </insert>
+
+        <!-- Insert sample metering points -->
+        <insert tableName="metering_points">
+            <column name="customer_id">1</column>
+            <column name="address">123 Main St, City</column>
+        </insert>
+        <insert tableName="metering_points">
+            <column name="customer_id">1</column>
+            <column name="address">456 Oak Ave, Town</column>
+        </insert>
+
+        <!-- Insert sample consumption data -->
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">150.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-01-01 00:00:00+00</column>
+            <column name="cost">30.10</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">165.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-02-01 00:00:00+00</column>
+            <column name="cost">33.04</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">200.0</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-01-01 00:00:00+00</column>
+            <column name="cost">40.00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">210.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-02-01 00:00:00+00</column>
+            <column name="cost">42.10</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog> 
