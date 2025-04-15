@@ -39,16 +39,18 @@ export interface AuthResponse {
     token: string;
     username: string;
     role: string;
+    customerId: number;
 }
 
 export interface MeteringPoint {
-    id: number;
+    meteringPointId: string;
     address: string;
-    customerUsername: string;
+    customerId: number;
 }
 
-export interface ConsumptionResponse {
-    date: string;
+export interface ConsumptionData {
+    meteringPointId: string;
+    timestamp: string;
     consumption: number;
     cost: number;
 }
@@ -63,18 +65,17 @@ export const authApi = {
 };
 
 export const consumptionApi = {
-    getMeteringPoints: () => api.get<MeteringPoint[]>('/api/consumption/metering-points'),
-    getConsumption: (meteringPointId: number, startDate: Date, endDate: Date) =>
-        api.get<ConsumptionResponse[]>(`/api/consumption/metering-points/${meteringPointId}/consumption`, {
+    getMeteringPoints: (customerId: number) => 
+        api.get<MeteringPoint[]>(`/api/consumption/metering-points?customerId=${customerId}`),
+    
+    getConsumptionByMeteringPoint: (meteringPointId: string) =>
+        api.get<ConsumptionData[]>(`/api/consumption/metering-point/${meteringPointId}`),
+    
+    getConsumptionByDateRange: (meteringPointId: string, startDate: Date, endDate: Date) =>
+        api.get<ConsumptionData[]>(`/api/consumption/metering-point/${meteringPointId}/date-range`, {
             params: { 
                 startDate: formatDate(startDate), 
                 endDate: formatDate(endDate) 
             },
-        }),
-    getCosts: (meteringPointId: number, month: Date) =>
-        api.get<Record<string, ConsumptionResponse>>(`/api/consumption/metering-points/${meteringPointId}/costs`, {
-            params: { 
-                month: formatDate(month) 
-            },
-        }),
+        })
 }; 

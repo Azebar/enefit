@@ -1,6 +1,6 @@
 package com.enefit.security;
 
-import com.enefit.model.Customer;
+import com.enefit.entity.Customer;
 import com.enefit.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

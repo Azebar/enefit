@@ -1,6 +1,6 @@
 package com.enefit.repository;
 
-import com.enefit.model.Customer;
+import com.enefit.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,26 +1,24 @@
 package com.enefit.service;
 
-import com.enefit.dto.AuthResponse;
-import com.enefit.dto.LoginRequest;
-import com.enefit.model.Customer;
+import com.enefit.dto.AuthResponseDto;
+import com.enefit.dto.LoginRequestDto;
+import com.enefit.entity.Customer;
 import com.enefit.repository.CustomerRepository;
 import com.enefit.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
     private final CustomerRepository customerRepository;
-    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthResponse login(LoginRequest request) {
+    public AuthResponseDto login(LoginRequestDto request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
@@ -65,10 +63,11 @@ public class AuthService {
                 return customer.getPassword();
             }
         });
-        return AuthResponse.builder()
+        return AuthResponseDto.builder()
                 .token(token)
                 .username(customer.getUsername())
                 .role("ROLE_USER")
+                .customerId(customer.getCustomerId())
                 .build();
     }
 } 

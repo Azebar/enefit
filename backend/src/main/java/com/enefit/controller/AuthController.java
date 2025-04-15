@@ -1,7 +1,7 @@
 package com.enefit.controller;
 
-import com.enefit.dto.AuthResponse;
-import com.enefit.dto.LoginRequest;
+import com.enefit.dto.AuthResponseDto;
+import com.enefit.dto.LoginRequestDto;
 import com.enefit.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,7 +22,7 @@ public class AuthController {
 
     @PostMapping("/login")
     @Operation(summary = "Login user", description = "Authenticates a user and returns a JWT token")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<AuthResponseDto> login(@RequestBody LoginRequestDto request) {
         return ResponseEntity.ok(authService.login(request));
     }
 } 

@@ -1,70 +1,85 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { consumptionApi } from '../services/api';
-
-interface ConsumptionData {
-    date: string;
-    consumption: number;
-    cost: number;
-}
+import { consumptionApi, ConsumptionData } from '../services/api';
 
 interface ConsumptionChartProps {
-    meteringPointId: number;
+    meteringPointId: string;
 }
 
-export const ConsumptionChart: React.FC<ConsumptionChartProps> = ({ meteringPointId }) => {
-    const [data, setData] = React.useState<ConsumptionData[]>([]);
-    const [loading, setLoading] = React.useState(true);
-    const [error, setError] = React.useState<string | null>(null);
+const ConsumptionChart: React.FC<ConsumptionChartProps> = ({ meteringPointId }) => {
+    const [data, setData] = useState<ConsumptionData[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    // Memoize the date range to prevent unnecessary re-renders
-    const dateRange = React.useMemo(() => {
-        const startDate = new Date();
-        startDate.setMonth(startDate.getMonth() - 11); // Last 12 months
-        const endDate = new Date();
-        return { startDate, endDate };
-    }, []);
-
-    React.useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const response = await consumptionApi.getConsumption(
-                    meteringPointId,
-                    dateRange.startDate,
-                    dateRange.endDate
-                );
+                setError(null);
+                console.log('Fetching consumption data for metering point:', meteringPointId);
+                const response = await consumptionApi.getConsumptionByMeteringPoint(meteringPointId);
+                console.log('Raw consumption data:', response.data);
                 setData(response.data);
             } catch (err) {
+                console.error('Error fetching consumption data:', err);
                 setError('Failed to load consumption data');
-                console.error(err);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchData();
-    }, [meteringPointId, dateRange]);
+        if (meteringPointId) {
+            fetchData();
+        }
+    }, [meteringPointId]);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
-    if (data.length === 0) return <div>No data available</div>;
+    if (loading) {
+        return <div>Loading consumption data...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
+    if (!data.length) {
+        return <div>No consumption data available</div>;
+    }
+
+    // Format data for the chart
+    const chartData = data.map(item => {
+        console.log('Processing item:', item);
+        console.log('Raw timestamp:', item.timestamp);
+        
+        // Parse the ISO date string and format it
+        const [datePart] = item.timestamp.split('T');
+        const [year, month, day] = datePart.split('-');
+        const date = new Date(Number(year), Number(month) - 1, Number(day));
+        
+        return {
+            ...item,
+            consumptionTime: date.toLocaleDateString('en-US', { 
+                year: 'numeric',
+                month: 'short'
+            }),
+            amount: item.consumption ? Number(item.consumption.toFixed(2)) : 0,
+            cost: item.cost ? Number(item.cost.toFixed(2)) : 0
+        };
+    });
 
     return (
-        <div style={{ width: '100%', height: 400 }}>
-            <h3>Consumption and Cost Over Time</h3>
+        <div style={{ width: '100%', height: 400 }} data-testid="consumption-chart">
             <ResponsiveContainer>
-                <LineChart data={data}>
+                <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis yAxisId="left" label={{ value: 'Consumption (kWh)', angle: -90, position: 'insideLeft' }} />
-                    <YAxis yAxisId="right" orientation="right" label={{ value: 'Cost (€)', angle: 90, position: 'insideRight' }} />
+                    <XAxis dataKey="consumptionTime" />
+                    <YAxis yAxisId="left" />
+                    <YAxis yAxisId="right" orientation="right" />
                     <Tooltip />
                     <Legend />
                     <Line
                         yAxisId="left"
                         type="monotone"
-                        dataKey="consumption"
+                        dataKey="amount"
                         stroke="#8884d8"
                         name="Consumption (kWh)"
                     />
@@ -73,10 +88,12 @@ export const ConsumptionChart: React.FC<ConsumptionChartProps> = ({ meteringPoin
                         type="monotone"
                         dataKey="cost"
                         stroke="#82ca9d"
-                        name="Cost (€)"
+                        name="Cost (EUR)"
                     />
                 </LineChart>
             </ResponsiveContainer>
         </div>
     );
-}; 
+};
+
+export default ConsumptionChart; 

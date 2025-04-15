@@ -1,4 +1,4 @@
-package com.enefit.model;
+package com.enefit.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -31,7 +31,4 @@ public class Consumption {
 
     @Column(name = "amount_unit", nullable = false)
     private String amountUnit;
-
-    @Column(nullable = false)
-    private BigDecimal cost;
 } 

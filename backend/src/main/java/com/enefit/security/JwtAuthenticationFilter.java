@@ -1,6 +1,6 @@
 package com.enefit.security;
 
-import com.enefit.model.Customer;
+import com.enefit.entity.Customer;
 import com.enefit.repository.CustomerRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

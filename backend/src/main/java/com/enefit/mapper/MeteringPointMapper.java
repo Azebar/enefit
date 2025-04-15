@@ -1,30 +1,17 @@
 package com.enefit.mapper;
 
-import com.enefit.dto.MeteringPointDTO;
-import com.enefit.model.MeteringPoint;
-import org.springframework.stereotype.Component;
-
+import com.enefit.dto.MeteringPointDto;
+import com.enefit.entity.MeteringPoint;
 import java.util.List;
-import java.util.stream.Collectors;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-@Component
-public class MeteringPointMapper {
+@Mapper(componentModel = "spring")
+public interface MeteringPointMapper {
     
-    public MeteringPointDTO toDTO(MeteringPoint meteringPoint) {
-        if (meteringPoint == null) {
-            return null;
-        }
-
-        MeteringPointDTO dto = new MeteringPointDTO();
-        dto.setMeteringPointId(meteringPoint.getMeteringPointId().toString());
-        dto.setAddress(meteringPoint.getAddress());
-        dto.setCustomerId(meteringPoint.getCustomer().getCustomerId());
-        return dto;
-    }
+    @Mapping(source = "meteringPointId", target = "meteringPointId")
+    @Mapping(source = "customer.customerId", target = "customerId")
+    MeteringPointDto toDTO(MeteringPoint meteringPoint);
     
-    public List<MeteringPointDTO> toDTOList(List<MeteringPoint> meteringPoints) {
-        return meteringPoints.stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
-    }
+    List<MeteringPointDto> toDTOList(List<MeteringPoint> meteringPoints);
 } 

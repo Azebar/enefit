@@ -12,18 +12,28 @@
             <column name="last_name">Doe</column>
             <column name="username">john.doe</column>
             <!-- Password: password123 -->
-            <column name="password">$2a$10$8GxHv3CZEGg.mX9YbDc0yOsP6jGdBj9.vdR3/dhYoKmrQJRN7PX1O</column>
-            <column name="role">USER</column>
+            <column name="password">$2a$10$lAHoMbOiCHcdZpop8wKMpO0GJg0B6e2iibxA9r3r423NHwEmNXCMm</column>
+        </insert>
+        <insert tableName="customers">
+            <column name="first_name">Jane</column>
+            <column name="last_name">Smith</column>
+            <column name="username">jane.smith</column>
+            <!-- Password: password123 -->
+            <column name="password">$2a$10$lAHoMbOiCHcdZpop8wKMpO0GJg0B6e2iibxA9r3r423NHwEmNXCMm</column>
         </insert>
 
         <!-- Insert sample metering points -->
         <insert tableName="metering_points">
             <column name="customer_id">1</column>
-            <column name="address">123 Main St, City</column>
+            <column name="address">456 Oak Ave, Town</column>
         </insert>
         <insert tableName="metering_points">
-            <column name="customer_id">1</column>
+            <column name="customer_id">2</column>
             <column name="address">456 Oak Ave, Town</column>
+        </insert>
+        <insert tableName="metering_points">
+            <column name="customer_id">2</column>
+            <column name="address">777 Wall Street, Town</column>
         </insert>
 
         <!-- Insert sample consumption data -->
@@ -32,28 +42,216 @@
             <column name="amount">150.5</column>
             <column name="amount_unit">kWh</column>
             <column name="consumption_time">2024-01-01 00:00:00+00</column>
-            <column name="cost">30.10</column>
         </insert>
         <insert tableName="consumption">
             <column name="metering_point_id">1</column>
             <column name="amount">165.2</column>
             <column name="amount_unit">kWh</column>
             <column name="consumption_time">2024-02-01 00:00:00+00</column>
-            <column name="cost">33.04</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">100.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-03-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">190.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-04-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">90.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-05-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">99.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-06-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">83.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-07-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">190.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-08-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">50.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-09-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">202.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-10-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">180.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-11-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">1</column>
+            <column name="amount">220.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-12-01 00:00:00+00</column>
         </insert>
         <insert tableName="consumption">
             <column name="metering_point_id">2</column>
-            <column name="amount">200.0</column>
+            <column name="amount">120.5</column>
             <column name="amount_unit">kWh</column>
             <column name="consumption_time">2024-01-01 00:00:00+00</column>
-            <column name="cost">40.00</column>
         </insert>
         <insert tableName="consumption">
             <column name="metering_point_id">2</column>
-            <column name="amount">210.5</column>
+            <column name="amount">135.2</column>
             <column name="amount_unit">kWh</column>
             <column name="consumption_time">2024-02-01 00:00:00+00</column>
-            <column name="cost">42.10</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">90.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-03-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">160.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-04-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">80.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-05-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">89.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-06-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">73.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-07-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">170.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-08-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">40.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-09-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">192.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-10-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">170.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-11-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">2</column>
+            <column name="amount">210.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-12-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">110.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-01-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">125.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-02-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">85.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-03-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">155.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-04-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">75.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-05-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">84.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-06-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">68.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-07-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">165.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-08-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">35.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-09-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">187.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-10-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">165.5</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-11-01 00:00:00+00</column>
+        </insert>
+        <insert tableName="consumption">
+            <column name="metering_point_id">3</column>
+            <column name="amount">205.2</column>
+            <column name="amount_unit">kWh</column>
+            <column name="consumption_time">2024-12-01 00:00:00+00</column>
         </insert>
     </changeSet>
 </databaseChangeLog> 

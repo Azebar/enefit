@@ -1,12 +1,10 @@
-package com.enefit.model;
+package com.enefit.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -30,10 +28,6 @@ public class Customer {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String role;
-
-    @JsonManagedReference
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MeteringPoint> meteringPoints = new ArrayList<>();
 } 

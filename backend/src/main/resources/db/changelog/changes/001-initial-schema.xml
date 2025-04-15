@@ -18,9 +18,6 @@
             <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="role" type="varchar(50)">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
 
         <createTable tableName="metering_points">
@@ -49,9 +46,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="consumption_time" type="timestamp with time zone">
-                <constraints nullable="false"/>
-            </column>
-            <column name="cost" type="numeric">
                 <constraints nullable="false"/>
             </column>
         </createTable>

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/enefit
+    url: jdbc:postgresql://localhost:5432/enefit
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -14,11 +14,6 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
-  mvc:
-    throw-exception-if-no-handler-found: true
-  web:
-    resources:
-      add-mappings: false
 
 server:
   port: 8080
